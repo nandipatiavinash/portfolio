@@ -1,0 +1,33 @@
+---
+title: "Re-Engineering Building Materials Retail with a Custom ERP"
+slug: "sree-vaaraahi-erp"
+industry: "Building Materials"
+client: "Sree Vaaraahi Building Solutions"
+year: "2024"
+summary: "Managing thousands of stock items and split payments across fragmented Tally and manual ledger systems left Sree Vaaraahi without margin clarity. We engineered a custom, mobile-first ERP that consolidates operations and snapshots unit costs at sale time."
+outcome: "Delivered sub-50ms floor billing navigations, 100% margin transparency, and zero calculation drift across payment channels."
+coverImage: "/logos/sree-vaaraahi.png"
+services: ["ERP Systems", "Custom Software", "Dashboards"]
+stack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS"]
+featured: true
+order: 1
+---
+
+## The problem
+
+The client was dealing with thousands of items and complex payment combinations. Crucially, they lacked visibility over profit margins across multiple platforms (Tally, manual billing books, and ledgers). Standard systems like Tally or Zoho were too slow and rigid, and updates to the product catalog regularly corrupted historical financial calculations.
+
+## The solution
+
+We engineered a mobile-first ERP with a PostgreSQL snapshot schema to secure profit integrity, stable security caching for fast queries, and an interactive analytics calendar that aggregates daily sales, expense reports, and net margins with a single click.
+
+## Key Features
+
+1. **Snapshot Pattern:** Implemented a relational database schema that snapshots unit costs and product prices at the exact moment of sale. This prevents any subsequent catalog changes from altering historical financial records.
+2. **Split Payment Ledger:** Designed a flexible ledger supporting complex combinations of payment methods (Cash, UPI, Credit, and Advance bookings) registered on a single checkout ticket.
+3. **RLS Query Optimization:** Replaced nested subqueries with a stable security caching function in Postgres Row Level Security, reducing query row scans from $O(N)$ to $O(1)$ and yielding sub-50ms navigations.
+4. **Dynamic Analytics Dashboard:** Built an interactive sales calendar grid showing daily invoice metrics, cost breakdowns, and net profit margins.
+
+## Results
+
+Operations are completely consolidated on a single floor-billing system that site staff can run easily from mobile screens. Sree Vaaraahi now operates with 100% margin transparency on every ticket sold, with zero calculation drift or historical record corruption.

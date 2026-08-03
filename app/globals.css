@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   DESIGN TOKENS — Light Mode
+   Editorial minimalism: cool paper + warm ink, single bronze accent.
+   Dark mode inverts the palette cleanly — no heavy color shifts.
+------------------------------------------------------------------- */
+@theme {
+  --color-paper: #faf9f6;
+  --color-paper-dim: #f1efe9;
+  --color-ink: #121310;
+  --color-ink-soft: #1d1e19;
+  --color-bone: #c7c3b8;
+  --color-graphite: #55564f;
+  --color-bronze: #8a6a3d;
+  --color-bronze-soft: #cdb98a;
+  --color-blueprint: #3c5578;
+  --color-line: #26271f14;
+
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-studio: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-studio-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --breakpoint-3xl: 1920px;
+}
+
+/* ------------------------------------------------------------------
+   DARK MODE — class-based (added on <html> by ThemeToggle)
+   Palette flips: paper → deep charcoal, ink → off-white.
+   Accent colours soften for legibility on dark backgrounds.
+------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: auto;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+    --color-paper: #111110;
+    --color-paper-dim: #1a1a18;
+    --color-ink: #f0ede6;
+    --color-ink-soft: #2a2b26;
+    --color-bone: #4a4a45;
+    --color-graphite: #9a9990;
+    --color-bronze: #b58a56;
+    --color-bronze-soft: #d4a96a;
+    --color-blueprint: #6b90b8;
+    --color-line: #ffffff10;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background-color: var(--color-bronze);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bronze);
+    outline-offset: 3px;
+  }
+
+  /* Custom Scrollbar - Transparent Background */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bone);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-graphite);
+  }
+}
+
+@layer utilities {
+  /* Faint drafting grid used behind hero + section transitions */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .blueprint-grid-dark {
+    background-image:
+      linear-gradient(to right, #ffffff08 1px, transparent 1px),
+      linear-gradient(to bottom, #ffffff08 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .section-index {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    color: var(--color-blueprint);
+    text-transform: uppercase;
+  }
+
+  .underline-hover {
+    position: relative;
+    text-decoration: none;
+  }
+  .underline-hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-studio);
+  }
+  .underline-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Marquee for the Trusted By logo strip */
+  .marquee-track {
+    animation: marquee 34s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+    transition:
+      opacity 0.9s var(--ease-studio),
+      transform 0.9s var(--ease-studio),
+      filter 0.9s var(--ease-studio);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-up {
+      transition: none;
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+    .marquee-track {
+      animation: none;
+    }
+  }
+}

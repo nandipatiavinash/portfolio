@@ -1,0 +1,33 @@
+---
+title: "Japali Kitchens — Multi-Outlet Digital Menu & Operations Platform"
+slug: "japali-kitchens-inventory"
+industry: "Food Services & Hospitality"
+client: "Japali Kitchens"
+year: "2024"
+summary: "We designed, engineered, and deployed a modern multi-outlet digital menu & operations management platform. The system delivers a zero-friction QR menu experience for customers and a secure, role-based staff console for outlet management."
+outcome: "Enabled 100% digital menu access, real-time multi-outlet stock updates, and unified operational expense analytics."
+coverImage: "/logos/japali-kitchens.png"
+services: ["SaaS & Operations", "Custom Software", "Dashboards"]
+stack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS"]
+featured: true
+order: 3
+---
+
+## The problem
+
+Japali Kitchens operates food outlets across hospital campuses (such as KIMS Hospital), corporate hubs, and campus canteens. Managing menu updates, daily inventory counts, and expenses across multiple physical locations on traditional paper lists or generic POS tools led to frequent menu discrepancies and zero central visibility.
+
+## The solution
+
+We built a custom digital hub: a zero-friction, browser-based QR-code menu experience for guests paired with a multi-tenant staff administration portal equipped with strict Row Level Security, live stock logs, and expense analytics.
+
+## Key Features
+
+1. **Customer QR Menu Experience (/[slug]):** Instant menu access at `menu.japalikitchens.com/{outlet-slug}` with zero app installation. Includes instant category filtering, real-time item search, and direct WhatsApp/call ordering.
+2. **Multi-Outlet Staff Console (/admin):** Role-based access controls (RBAC) allowing Super Admins to switch between all locations, and Outlet Managers to toggle menu availability, modify prices, and generate/download vector QR codes.
+3. **Inventory Control & Audit Trail:** Real-time stock counts with automated low-stock notifications. Postgres database triggers record every stock adjustment in an immutable inventory history log.
+4. **Expense Tracking & Visual Analytics:** Streamlined logging of operational expenses (raw ingredients, cooking gas, staff wages) paired with interactive Recharts data visualizations.
+
+## Results
+
+Multi-outlet coordination is now entirely centralized, ensuring menu updates and item availability are reflected instantly. Staff manage stock levels and record daily expenses directly from their mobile devices, ensuring the home office has a unified, real-time overview of profit margins across all hospital and campus locations.
